@@ -30,12 +30,13 @@ class TP_8IAR125_TP1_API ACatcher : public APawn
 	void MoveToTarget(const FVector& Target) const;
 	FVector PickNewTarget() const;
 
+protected:
+	UFUNCTION(BlueprintNativeEvent)
+	void OnAttack() const;
+
 public:	
 	ACatcher();
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
-	
-	UFUNCTION(BlueprintNativeEvent)
-	void OnAttack() const;
 };
