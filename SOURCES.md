@@ -10,3 +10,8 @@ Rail Minecraft
 Minecraft Bee
 (https://sketchfab.com/3d-models/minecraft-bee-af88c86675f34fa0a1156b1ef69113c4)
 
+Hollow knight - Minecraft
+(https://sketchfab.com/3d-models/hollow-knight-minecraft-fe551776a76144008ef6bf4e1ea619d7)
+
+Critical Hit
+(https://mcitemgallery.com/particles/)
