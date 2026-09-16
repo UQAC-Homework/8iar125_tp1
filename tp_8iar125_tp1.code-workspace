@@ -1,0 +1,879 @@
+{
+	"folders": [
+		{
+			"name": "tp_8iar125_tp1",
+			"path": "."
+		},
+		{
+			"name": "UE5",
+			"path": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+		}
+	],
+	"settings": {
+		"js/ts.tsc.autoDetect": "off",
+		"npm.autoDetect": "off",
+		"terminal.integrated.env.linux": {
+			"PATH": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Binaries/ThirdParty/DotNet/10.0/linux-x64:${env:PATH}",
+			"DOTNET_ROOT": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Binaries/ThirdParty/DotNet/10.0/linux-x64",
+			"DOTNET_HOST_PATH": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Binaries/ThirdParty/DotNet/10.0/linux-x64/dotnet",
+			"DOTNET_MULTILEVEL_LOOKUP": "0",
+			"DOTNET_ROLL_FORWARD": "LatestMajor"
+		}
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-vscode.cpptools",
+			"ms-dotnettools.csharp"
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"label": "tp_8iar125_tp1 Linux Debug Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"Linux",
+					"Debug",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 Linux Debug Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"Linux",
+					"Debug",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"tp_8iar125_tp1 Linux Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 Linux Debug Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"Linux",
+					"Debug",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 Linux DebugGame Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"Linux",
+					"DebugGame",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 Linux DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"Linux",
+					"DebugGame",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"tp_8iar125_tp1 Linux DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 Linux DebugGame Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"Linux",
+					"DebugGame",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 Linux Development Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"Linux",
+					"Development",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 Linux Development Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"Linux",
+					"Development",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"tp_8iar125_tp1 Linux Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 Linux Development Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"Linux",
+					"Development",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 Linux Test Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"Linux",
+					"Test",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 Linux Test Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"Linux",
+					"Test",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"tp_8iar125_tp1 Linux Test Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 Linux Test Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"Linux",
+					"Test",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 Linux Shipping Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"Linux",
+					"Shipping",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 Linux Shipping Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"Linux",
+					"Shipping",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"tp_8iar125_tp1 Linux Shipping Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 Linux Shipping Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"Linux",
+					"Shipping",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 LinuxArm64 Debug Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"LinuxArm64",
+					"Debug",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 LinuxArm64 Debug Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"LinuxArm64",
+					"Debug",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"tp_8iar125_tp1 LinuxArm64 Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 LinuxArm64 Debug Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"LinuxArm64",
+					"Debug",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 LinuxArm64 DebugGame Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"LinuxArm64",
+					"DebugGame",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 LinuxArm64 DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"LinuxArm64",
+					"DebugGame",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"tp_8iar125_tp1 LinuxArm64 DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 LinuxArm64 DebugGame Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"LinuxArm64",
+					"DebugGame",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 LinuxArm64 Development Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"LinuxArm64",
+					"Development",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 LinuxArm64 Development Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"LinuxArm64",
+					"Development",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"tp_8iar125_tp1 LinuxArm64 Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 LinuxArm64 Development Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"LinuxArm64",
+					"Development",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 LinuxArm64 Test Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"LinuxArm64",
+					"Test",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 LinuxArm64 Test Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"LinuxArm64",
+					"Test",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"tp_8iar125_tp1 LinuxArm64 Test Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 LinuxArm64 Test Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"LinuxArm64",
+					"Test",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 LinuxArm64 Shipping Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"LinuxArm64",
+					"Shipping",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 LinuxArm64 Shipping Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"LinuxArm64",
+					"Shipping",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"tp_8iar125_tp1 LinuxArm64 Shipping Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1 LinuxArm64 Shipping Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1",
+					"LinuxArm64",
+					"Shipping",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1Editor Linux Debug Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1Editor",
+					"Linux",
+					"Debug",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1Editor Linux Debug Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1Editor",
+					"Linux",
+					"Debug",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"tp_8iar125_tp1Editor Linux Debug Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1Editor Linux Debug Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1Editor",
+					"Linux",
+					"Debug",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1Editor Linux DebugGame Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1Editor",
+					"Linux",
+					"DebugGame",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1Editor Linux DebugGame Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1Editor",
+					"Linux",
+					"DebugGame",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"tp_8iar125_tp1Editor Linux DebugGame Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1Editor Linux DebugGame Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1Editor",
+					"Linux",
+					"DebugGame",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1Editor Linux Development Build",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1Editor",
+					"Linux",
+					"Development",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1Editor Linux Development Rebuild",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1Editor",
+					"Linux",
+					"Development",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex"
+				],
+				"problemMatcher": "$msCompile",
+				"dependsOn": [
+					"tp_8iar125_tp1Editor Linux Development Clean"
+				],
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			},
+			{
+				"label": "tp_8iar125_tp1Editor Linux Development Clean",
+				"group": "build",
+				"command": "Engine/Build/BatchFiles/Linux/Build.sh",
+				"args": [
+					"tp_8iar125_tp1Editor",
+					"Linux",
+					"Development",
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-waitmutex",
+					"-clean"
+				],
+				"problemMatcher": "$msCompile",
+				"type": "shell",
+				"options": {
+					"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+				}
+			}
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "Launch tp_8iar125_tp1 (Debug)",
+				"request": "launch",
+				"program": "/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/Binaries/Linux/UnrealGame-Linux-Debug",
+				"preLaunchTask": "tp_8iar125_tp1 Linux Debug Build",
+				"args": [
+				],
+				"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2",
+				"type": "cppdbg",
+				"visualizerFile": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch tp_8iar125_tp1 (DebugGame)",
+				"request": "launch",
+				"program": "/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/Binaries/Linux/UnrealGame-Linux-DebugGame",
+				"preLaunchTask": "tp_8iar125_tp1 Linux DebugGame Build",
+				"args": [
+				],
+				"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2",
+				"type": "cppdbg",
+				"visualizerFile": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch tp_8iar125_tp1 (Development)",
+				"request": "launch",
+				"program": "/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/Binaries/Linux/UnrealGame",
+				"preLaunchTask": "tp_8iar125_tp1 Linux Development Build",
+				"args": [
+				],
+				"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2",
+				"type": "cppdbg",
+				"visualizerFile": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch tp_8iar125_tp1 (Test)",
+				"request": "launch",
+				"program": "/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/Binaries/Linux/UnrealGame-Linux-Test",
+				"preLaunchTask": "tp_8iar125_tp1 Linux Test Build",
+				"args": [
+				],
+				"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2",
+				"type": "cppdbg",
+				"visualizerFile": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch tp_8iar125_tp1 (Shipping)",
+				"request": "launch",
+				"program": "/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/Binaries/Linux/UnrealGame-Linux-Shipping",
+				"preLaunchTask": "tp_8iar125_tp1 Linux Shipping Build",
+				"args": [
+				],
+				"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2",
+				"type": "cppdbg",
+				"visualizerFile": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch tp_8iar125_tp1Editor (Debug)",
+				"request": "launch",
+				"program": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Binaries/Linux/UnrealEditor-Linux-Debug",
+				"preLaunchTask": "tp_8iar125_tp1Editor Linux Debug Build",
+				"args": [
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject"
+				],
+				"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2",
+				"type": "cppdbg",
+				"visualizerFile": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch tp_8iar125_tp1Editor (DebugGame)",
+				"request": "launch",
+				"program": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Binaries/Linux/UnrealEditor-Linux-DebugGame",
+				"preLaunchTask": "tp_8iar125_tp1Editor Linux DebugGame Build",
+				"args": [
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject"
+				],
+				"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2",
+				"type": "cppdbg",
+				"visualizerFile": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Launch tp_8iar125_tp1Editor (Development)",
+				"request": "launch",
+				"program": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Binaries/Linux/UnrealEditor",
+				"preLaunchTask": "tp_8iar125_tp1Editor Linux Development Build",
+				"args": [
+					"/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject"
+				],
+				"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2",
+				"type": "cppdbg",
+				"visualizerFile": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Extras/VisualStudioDebugging/Unreal.natvis",
+				"showDisplayString": true
+			},
+			{
+				"name": "Generate Project Files",
+				"type": "coreclr",
+				"request": "launch",
+				"preLaunchTask": "UnrealBuildTool Linux Development Build",
+				"program": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Build/BatchFiles/RunUBT.sh",
+				"args": [
+					"-projectfiles",
+					"-vscode",
+					"-project=/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/tp_8iar125_tp1.uproject",
+					"-game",
+					"-engine",
+					"-dotnet"
+				],
+				"env": {
+					"PATH": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Binaries/ThirdParty/DotNet/10.0/linux-x64:${env:PATH}",
+					"DOTNET_ROOT": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Binaries/ThirdParty/DotNet/10.0/linux-x64",
+					"DOTNET_HOST_PATH": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Binaries/ThirdParty/DotNet/10.0/linux-x64/dotnet",
+					"DOTNET_MULTILEVEL_LOOKUP": "0",
+					"DOTNET_ROLL_FORWARD": "LatestMajor"
+				},
+				"console": "internalConsole",
+				"internalConsoleOptions": "openOnSessionStart",
+				"stopAtEntry": false,
+				"cwd": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2"
+			}
+		]
+	}
+}

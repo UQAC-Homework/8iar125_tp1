@@ -1,0 +1,28 @@
+{
+	"configurations": [
+		{
+			"name": "tp_8iar125_tp1Editor Editor Linux Development (tp_8iar125_tp1)",
+			"compilerPath": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"compilerArgs": [
+				"-isysroot",
+				"/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu"
+			],
+			"cStandard": "c17",
+			"cppStandard": "c++20",
+			"intelliSenseMode": "clang-x64",
+			"compileCommands": "/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/.vscode/compileCommands_tp_8iar125_tp1.json"
+		},
+		{
+			"name": "Linux",
+			"compilerPath": "/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++",
+			"compilerArgs": [
+				"-isysroot",
+				"/home/warpersan/.unrealengine/Linux_Unreal_Engine_5.8.2/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu"
+			],
+			"cStandard": "c17",
+			"cppStandard": "c++20",
+			"intelliSenseMode": "clang-x64",
+			"compileCommands": "/home/warpersan/Projects/Unreal Engine/tp_8iar125_tp1/.vscode/compileCommands_Default.json"
+		}
+	]
+}
