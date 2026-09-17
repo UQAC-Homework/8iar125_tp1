@@ -3,6 +3,7 @@
 #include "FruitTrackerSystem.h"
 #include "Kismet/KismetMathLibrary.h"
 
+/// Finds the fruit tracker system from the given instance
 static UFruitTrackerSystem* GetFruitTrackerSystem(const ACatcher* Catcher)
 {
 	if (Catcher == nullptr)
@@ -18,14 +19,14 @@ static UFruitTrackerSystem* GetFruitTrackerSystem(const ACatcher* Catcher)
 
 /// Computes the next fruit to target
 static AFruit* GetNextFruit(
-	const UFruitTrackerSystem* Tracker,
+	const TArray<TWeakObjectPtr<AFruit>>& Fruits,
 	const FVector& Position
 )
 {
 	AFruit* ClosestFruit = nullptr;
 	float ClosestDistance = FLT_MAX;
 
-	for (const auto Instance : Tracker->GetActiveFruits())
+	for (const auto Instance : Fruits)
 	{
 		const auto Fruit = Instance.Get();
 
@@ -154,7 +155,7 @@ void ACatcher::SetTarget(const AFruit* Target)
 bool ACatcher::TryFindingTarget(const UFruitTrackerSystem* Tracker)
 {
 	const auto Fruit = GetNextFruit(
-		Tracker,
+		Tracker->GetActiveFruits(),
 		this->GetActorLocation()
 	);
 
