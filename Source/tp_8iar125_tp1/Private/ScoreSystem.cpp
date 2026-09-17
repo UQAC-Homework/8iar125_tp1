@@ -30,3 +30,21 @@ void UScoreSystem::RecordCapture()
 	this->TotalAmount++;
 	this->NotifyRecord();
 }
+
+UScoreSystem* UScoreSystem::Get(const UObject* WorldContextObject)
+{
+	if (WorldContextObject == nullptr)
+		return nullptr;
+
+	const auto World = WorldContextObject->GetWorld();
+
+	if (World == nullptr)
+		return nullptr;
+
+	const auto GameInstance = World->GetGameInstance();
+
+	if (GameInstance == nullptr)
+		return nullptr;
+
+	return GameInstance->GetSubsystem<UScoreSystem>();
+}

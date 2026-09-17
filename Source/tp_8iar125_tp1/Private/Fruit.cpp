@@ -1,6 +1,7 @@
 #include "tp_8iar125_tp1/Public/Fruit.h"
 
 #include "FruitTrackerSystem.h"
+#include "ScoreSystem.h"
 
 
 AFruit::AFruit()
@@ -39,17 +40,22 @@ void AFruit::Tick(const float DeltaTime)
 	this->SetActorLocation(Position);
 }
 
+void AFruit::LifeSpanExpired()
+{
+	Super::LifeSpanExpired();
+	
+	const auto ScoreSystem = UScoreSystem::Get(this);
+
+	if (ScoreSystem != nullptr)
+		ScoreSystem->RecordMiss();
+}
+
 void AFruit::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-	const auto GameInstance = this->GetGameInstance();
+	const auto Tracker = UFruitTrackerSystem::Get(this);
 
-	if (GameInstance != nullptr)
-	{
-		const auto Tracker = GameInstance->GetSubsystem<UFruitTrackerSystem>();
-
-		if (Tracker != nullptr)
-			Tracker->RegisterFruit(this);
-	}
+	if (Tracker != nullptr)
+		Tracker->RegisterFruit(this);
 
 	Super::EndPlay(EndPlayReason);
 }

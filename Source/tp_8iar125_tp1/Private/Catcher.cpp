@@ -191,7 +191,10 @@ void ACatcher::NotifyActorBeginOverlap(AActor* OtherActor)
 
 	this->OnAttack();
 
-	GetGameInstance()->GetSubsystem<UScoreSystem>()->RecordCapture();
+	const auto ScoreSystem = UScoreSystem::Get(this);
+
+	if (ScoreSystem != nullptr)
+		ScoreSystem->RecordCapture();
 
 	// Destroy fruit
 	Fruit->Destroy();

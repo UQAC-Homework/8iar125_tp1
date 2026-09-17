@@ -29,4 +29,7 @@ public:
 
 	/// Records that a capture occured
 	void RecordCapture();
+	
+	/// Gets the instance of the system
+	static UScoreSystem* Get(const UObject* WorldContextObject);
 };
