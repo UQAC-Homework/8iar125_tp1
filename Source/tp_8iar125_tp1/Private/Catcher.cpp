@@ -106,7 +106,7 @@ void ACatcher::NotifyActorBeginOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);
 
-	const auto Fruit = reinterpret_cast<AFruit*>(OtherActor);
+	const auto Fruit = Cast<AFruit>(OtherActor);
 
 	// If not fruit, skip
 	if (Fruit == nullptr)
