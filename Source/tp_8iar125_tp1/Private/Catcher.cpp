@@ -1,6 +1,7 @@
 #include "Catcher.h"
 
 #include "Fruit.h"
+#include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 
 ACatcher::ACatcher()
@@ -88,9 +89,46 @@ void ACatcher::MoveTo(const FVector& TargetPosition) const
 
 FVector ACatcher::ComputeTarget() const
 {
-	auto Position = this->GetActorLocation();
+	const auto World = this->GetWorld();
+	FVector Position = this->GetActorLocation();
 
-	Position.Y = UKismetMathLibrary::RandomFloatInRange(-2200, 2200);
+	if (World == nullptr)
+		return Position;
+
+	TArray<AActor*> InstancesFound;
+	UGameplayStatics::GetAllActorsOfClass(
+		World,
+		AFruit::StaticClass(),
+		InstancesFound
+	);
+
+	const AFruit* ClosestFruit = nullptr;
+	float ClosestDistance = FLT_MAX;
+
+	for (const auto Instance : InstancesFound)
+	{
+		const auto Fruit = Cast<AFruit>(Instance);
+
+		if (Fruit == nullptr)
+			continue;
+
+		const auto Distance = FVector::Dist2D(
+			Position,
+			Fruit->GetActorLocation()
+		);
+
+
+		if (Distance >= ClosestDistance)
+			continue;
+
+		ClosestDistance = Distance;
+		ClosestFruit = Fruit;
+	}
+
+	if (ClosestFruit == nullptr)
+		return FVector::ZeroVector;
+
+	Position.Y = ClosestFruit->GetActorLocation().Y;
 
 	return Position;
 }
