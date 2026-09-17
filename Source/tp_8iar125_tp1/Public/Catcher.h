@@ -48,9 +48,6 @@ class TP_8IAR125_TP1_API ACatcher : public APawn
 	/// Moves to the given position
 	void MoveTo(const FVector& TargetPosition) const;
 
-	/// Computes a new random target position
-	FVector ComputeTarget() const;
-
 protected:
 	/// Called when an attack is performed
 	UFUNCTION(BlueprintNativeEvent)

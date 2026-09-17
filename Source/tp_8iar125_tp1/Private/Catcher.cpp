@@ -183,24 +183,6 @@ void ACatcher::MoveTo(const FVector& TargetPosition) const
 	this->Movement->AddInputVector(NextVelocity);
 }
 
-FVector ACatcher::ComputeTarget() const
-{
-	FVector Position = this->GetActorLocation();
-	const auto Tracker = GetFruitTrackerSystem(this);
-
-	if (Tracker == nullptr)
-		return Position;
-
-	const auto NextFruit = GetNextFruit(Tracker, Position);
-
-	if (NextFruit == nullptr)
-		return Position;
-
-	Position.Y = NextFruit->GetActorLocation().Y;
-
-	return Position;
-}
-
 void ACatcher::Tick(const float DeltaTime)
 {
 	Super::Tick(DeltaTime);
