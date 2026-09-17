@@ -4,6 +4,19 @@
 #include "FruitTrackerSystem.h"
 #include "Kismet/KismetMathLibrary.h"
 
+static UFruitTrackerSystem* GetFruitTrackerSystem(const ACatcher* Catcher)
+{
+	if (Catcher == nullptr)
+		return nullptr;
+
+	const auto GameInstance = Catcher->GetGameInstance();
+
+	if (GameInstance == nullptr)
+		return nullptr;
+
+	return GameInstance->GetSubsystem<UFruitTrackerSystem>();
+}
+
 ACatcher::ACatcher()
 {
 	this->PrimaryActorTick.bCanEverTick = true;
@@ -91,12 +104,7 @@ void ACatcher::MoveTo(const FVector& TargetPosition) const
 FVector ACatcher::ComputeTarget() const
 {
 	FVector Position = this->GetActorLocation();
-	const auto GameInstance = this->GetGameInstance();
-
-	if (GameInstance == nullptr)
-		return Position;
-
-	const auto Tracker = GameInstance->GetSubsystem<UFruitTrackerSystem>();
+	const auto Tracker = GetFruitTrackerSystem(this);
 
 	if (Tracker == nullptr)
 		return Position;
