@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Fruit.h"
 #include "Components/BoxComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
 #include "GameFramework/Pawn.h"
@@ -28,6 +29,9 @@ class TP_8IAR125_TP1_API ACatcher : public APawn
 
 	UPROPERTY(VisibleAnywhere)
 	UFloatingPawnMovement* Movement;
+
+	/// Computes the next fruit to target
+	static AFruit* GetNextFruit(const TArray<TWeakObjectPtr<AFruit>>& Fruits, const FVector& Position);
 
 	/// Computes the next velocity to move
 	static FVector GetNextVelocity(

@@ -1,6 +1,5 @@
 #include "Catcher.h"
 
-#include "Fruit.h"
 #include "FruitTrackerSystem.h"
 #include "Kismet/KismetMathLibrary.h"
 
@@ -39,6 +38,34 @@ void ACatcher::BeginPlay()
 	Super::BeginPlay();
 
 	this->TargetLocation = this->ComputeTarget();
+}
+
+
+AFruit* ACatcher::GetNextFruit(
+	const TArray<TWeakObjectPtr<AFruit>>& Fruits,
+	const FVector& Position
+)
+{
+	AFruit* ClosestFruit = nullptr;
+	float ClosestDistance = FLT_MAX;
+
+	for (const auto Instance : Fruits)
+	{
+		const auto Fruit = Instance.Get();
+
+		if (Fruit == nullptr)
+			continue;
+
+		const auto Distance = abs(Position.X - Fruit->GetActorLocation().X);
+
+		if (Distance >= ClosestDistance)
+			continue;
+
+		ClosestDistance = Distance;
+		ClosestFruit = Fruit;
+	}
+
+	return ClosestFruit;
 }
 
 FVector ACatcher::GetNextVelocity(
@@ -109,29 +136,15 @@ FVector ACatcher::ComputeTarget() const
 	if (Tracker == nullptr)
 		return Position;
 
-	const AFruit* ClosestFruit = nullptr;
-	float ClosestDistance = FLT_MAX;
+	const auto NextFruit = this->GetNextFruit(
+		Tracker->GetActiveFruits(),
+		Position
+	);
 
-	for (const auto Instance : Tracker->GetActiveFruits())
-	{
-		const auto Fruit = Instance.Get();
-
-		if (Fruit == nullptr)
-			continue;
-
-		const auto Distance = abs(Position.X - Fruit->GetActorLocation().X);
-
-		if (Distance >= ClosestDistance)
-			continue;
-
-		ClosestDistance = Distance;
-		ClosestFruit = Fruit;
-	}
-
-	if (ClosestFruit == nullptr)
+	if (NextFruit == nullptr)
 		return Position;
 
-	Position.Y = ClosestFruit->GetActorLocation().Y;
+	Position.Y = NextFruit->GetActorLocation().Y;
 
 	return Position;
 }
