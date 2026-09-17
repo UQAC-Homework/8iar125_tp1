@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Fruit.h"
+#include "FruitTrackerSystem.h"
 #include "Components/BoxComponent.h"
 #include "GameFramework/FloatingPawnMovement.h"
 #include "GameFramework/Pawn.h"
@@ -37,6 +38,8 @@ class TP_8IAR125_TP1_API ACatcher : public APawn
 
 	/// Requests a new target to follow
 	void RequestNewTarget();
+
+	bool TryFindingTarget(const UFruitTrackerSystem& Tracker);
 
 	/// Moves to the given position
 	void MoveTo(const FVector& TargetPosition) const;

@@ -18,14 +18,14 @@ static UFruitTrackerSystem* GetFruitTrackerSystem(const ACatcher* Catcher)
 
 /// Computes the next fruit to target
 static AFruit* GetNextFruit(
-	const TArray<TWeakObjectPtr<AFruit>>& Fruits,
+	const UFruitTrackerSystem* Tracker,
 	const FVector& Position
 )
 {
 	AFruit* ClosestFruit = nullptr;
 	float ClosestDistance = FLT_MAX;
 
-	for (const auto Instance : Fruits)
+	for (const auto Instance : Tracker->GetActiveFruits())
 	{
 		const auto Fruit = Instance.Get();
 
@@ -111,16 +111,24 @@ void ACatcher::BeginPlay()
 
 void ACatcher::OnFruitSpawned()
 {
-	if (!this->HasTarget)
-	{
-		this->TargetLocation = this->ComputeTarget();
-		this->HasTarget = true;
-	}
-
 	const auto Tracker = GetFruitTrackerSystem(this);
 
 	if (Tracker == nullptr)
 		return;
+
+	if (!this->HasTarget)
+	{
+		const auto Fruit = GetNextFruit(
+			Tracker,
+			this->GetActorLocation()
+		);
+
+		if (Fruit != nullptr)
+		{
+			// Set target to given fruit
+			this->HasTarget = true;
+		}
+	}
 
 	Tracker->OnFruitRegistered.Remove(this->OnFruitSpawnedHandle);
 }
@@ -132,8 +140,24 @@ void ACatcher::RequestNewTarget()
 	if (Tracker == nullptr)
 		return;
 
+	const auto Fruit = GetNextFruit(
+		Tracker,
+		this->GetActorLocation()
+	);
+
+	if (Fruit != nullptr)
+	{
+		// Set target to given fruit
+		this->HasTarget = true;
+		return;
+	}
+
 	this->OnFruitSpawnedHandle = Tracker->OnFruitRegistered.AddUObject(this, &ACatcher::OnFruitSpawned);
 	this->HasTarget = false;
+}
+
+bool ACatcher::TryFindingTarget(const UFruitTrackerSystem* Tracker)
+{
 }
 
 void ACatcher::MoveTo(const FVector& TargetPosition) const
@@ -164,10 +188,7 @@ FVector ACatcher::ComputeTarget() const
 	if (Tracker == nullptr)
 		return Position;
 
-	const auto NextFruit = GetNextFruit(
-		Tracker->GetActiveFruits(),
-		Position
-	);
+	const auto NextFruit = GetNextFruit(Tracker, Position);
 
 	if (NextFruit == nullptr)
 		return Position;
