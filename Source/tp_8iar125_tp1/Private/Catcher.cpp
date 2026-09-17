@@ -1,6 +1,7 @@
 #include "Catcher.h"
 
 #include "FruitTrackerSystem.h"
+#include "ScoreSystem.h"
 #include "Kismet/KismetMathLibrary.h"
 
 /// Finds the fruit tracker system from the given instance
@@ -203,6 +204,8 @@ void ACatcher::NotifyActorBeginOverlap(AActor* OtherActor)
 		return;
 
 	this->OnAttack();
+	
+	GetGameInstance()->GetSubsystem<UScoreSystem>()->RecordCapture();
 
 	// Destroy fruit
 	Fruit->Destroy();
