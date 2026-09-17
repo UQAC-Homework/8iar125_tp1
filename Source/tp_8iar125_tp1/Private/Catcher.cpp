@@ -116,19 +116,9 @@ void ACatcher::OnFruitSpawned()
 	if (Tracker == nullptr)
 		return;
 
-	if (!this->HasTarget)
-	{
-		const auto Fruit = GetNextFruit(
-			Tracker,
-			this->GetActorLocation()
-		);
-
-		if (Fruit != nullptr)
-		{
-			// Set target to given fruit
-			this->HasTarget = true;
-		}
-	}
+	// If no target and failed to find a new one, keep event
+	if (!this->HasTarget && !this->TryFindingTarget(Tracker))
+		return;
 
 	Tracker->OnFruitRegistered.Remove(this->OnFruitSpawnedHandle);
 }
@@ -140,24 +130,37 @@ void ACatcher::RequestNewTarget()
 	if (Tracker == nullptr)
 		return;
 
+	if (this->TryFindingTarget(Tracker))
+		return;
+
+	this->OnFruitSpawnedHandle = Tracker->OnFruitRegistered.AddUObject(this, &ACatcher::OnFruitSpawned);
+}
+
+void ACatcher::SetTarget(const AFruit* Target)
+{
+	if (Target == nullptr)
+	{
+		this->HasTarget = false;
+		return;
+	}
+
+	FVector Position = this->GetActorLocation();
+	Position.Y = Target->GetActorLocation().Y;
+
+	this->TargetLocation = Position;
+	this->HasTarget = true;
+}
+
+bool ACatcher::TryFindingTarget(const UFruitTrackerSystem* Tracker)
+{
 	const auto Fruit = GetNextFruit(
 		Tracker,
 		this->GetActorLocation()
 	);
 
-	if (Fruit != nullptr)
-	{
-		// Set target to given fruit
-		this->HasTarget = true;
-		return;
-	}
+	this->SetTarget(Fruit);
 
-	this->OnFruitSpawnedHandle = Tracker->OnFruitRegistered.AddUObject(this, &ACatcher::OnFruitSpawned);
-	this->HasTarget = false;
-}
-
-bool ACatcher::TryFindingTarget(const UFruitTrackerSystem* Tracker)
-{
+	return Fruit != nullptr;
 }
 
 void ACatcher::MoveTo(const FVector& TargetPosition) const
