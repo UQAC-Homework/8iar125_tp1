@@ -16,32 +16,8 @@ static UFruitTrackerSystem* GetFruitTrackerSystem(const ACatcher* Catcher)
 	return GameInstance->GetSubsystem<UFruitTrackerSystem>();
 }
 
-ACatcher::ACatcher()
-{
-	this->PrimaryActorTick.bCanEverTick = true;
-
-	this->RootComponent = CreateDefaultSubobject<USceneComponent>("Root");
-
-	this->BoxCollision = CreateDefaultSubobject<UBoxComponent>("Collision");
-	this->BoxCollision->SetupAttachment(RootComponent);
-
-	this->HasTarget = false;
-	this->TargetLocation = FVector::ZeroVector;
-	this->SlowMovementRange = 1000;
-	this->StopMovementRange = 20;
-	this->Movement = CreateDefaultSubobject<UFloatingPawnMovement>("PawnMovement");
-	this->Movement->UpdatedComponent = RootComponent;
-}
-
-void ACatcher::BeginPlay()
-{
-	Super::BeginPlay();
-
-	this->TargetLocation = this->ComputeTarget();
-}
-
-
-AFruit* ACatcher::GetNextFruit(
+/// Computes the next fruit to target
+static AFruit* GetNextFruit(
 	const TArray<TWeakObjectPtr<AFruit>>& Fruits,
 	const FVector& Position
 )
@@ -68,7 +44,8 @@ AFruit* ACatcher::GetNextFruit(
 	return ClosestFruit;
 }
 
-FVector ACatcher::GetNextVelocity(
+/// Computes the velocity needed to move from the given position to the given target position
+static FVector GetNextVelocity(
 	const FVector& Position,
 	const FVector& Target,
 	const float MaxSpeed,
@@ -108,13 +85,64 @@ FVector ACatcher::GetNextVelocity(
 	return DesiredVelocity;
 }
 
+ACatcher::ACatcher()
+{
+	this->PrimaryActorTick.bCanEverTick = true;
+
+	this->RootComponent = CreateDefaultSubobject<USceneComponent>("Root");
+
+	this->BoxCollision = CreateDefaultSubobject<UBoxComponent>("Collision");
+	this->BoxCollision->SetupAttachment(RootComponent);
+
+	this->HasTarget = false;
+	this->TargetLocation = FVector::ZeroVector;
+	this->SlowMovementRange = 1000;
+	this->StopMovementRange = 20;
+	this->Movement = CreateDefaultSubobject<UFloatingPawnMovement>("PawnMovement");
+	this->Movement->UpdatedComponent = RootComponent;
+}
+
+void ACatcher::BeginPlay()
+{
+	Super::BeginPlay();
+
+	this->RequestNewTarget();
+}
+
+void ACatcher::OnFruitSpawned()
+{
+	if (!this->HasTarget)
+	{
+		this->TargetLocation = this->ComputeTarget();
+		this->HasTarget = true;
+	}
+
+	const auto Tracker = GetFruitTrackerSystem(this);
+
+	if (Tracker == nullptr)
+		return;
+
+	Tracker->OnFruitRegistered.Remove(this->OnFruitSpawnedHandle);
+}
+
+void ACatcher::RequestNewTarget()
+{
+	const auto Tracker = GetFruitTrackerSystem(this);
+
+	if (Tracker == nullptr)
+		return;
+
+	this->OnFruitSpawnedHandle = Tracker->OnFruitRegistered.AddUObject(this, &ACatcher::OnFruitSpawned);
+	this->HasTarget = false;
+}
+
 void ACatcher::MoveTo(const FVector& TargetPosition) const
 {
 	if (this->Movement == nullptr)
 		return;
 
 	const auto Position = this->GetActorLocation();
-	const auto NextVelocity = this->GetNextVelocity(
+	const auto NextVelocity = GetNextVelocity(
 		Position,
 		TargetPosition,
 		this->Movement->MaxSpeed,
@@ -136,7 +164,7 @@ FVector ACatcher::ComputeTarget() const
 	if (Tracker == nullptr)
 		return Position;
 
-	const auto NextFruit = this->GetNextFruit(
+	const auto NextFruit = GetNextFruit(
 		Tracker->GetActiveFruits(),
 		Position
 	);
@@ -155,8 +183,6 @@ void ACatcher::Tick(const float DeltaTime)
 
 	if (!this->HasTarget)
 		return;
-
-	//this->MoveTo(this->ComputeTarget());
 
 	this->MoveTo(this->TargetLocation);
 }
@@ -177,7 +203,7 @@ void ACatcher::NotifyActorBeginOverlap(AActor* OtherActor)
 	Fruit->Destroy();
 
 	// Pick new target
-	this->TargetLocation = this->ComputeTarget();
+	this->RequestNewTarget();
 }
 
 void ACatcher::OnAttack_Implementation() const

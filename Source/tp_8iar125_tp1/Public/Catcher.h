@@ -12,10 +12,12 @@ class TP_8IAR125_TP1_API ACatcher : public APawn
 {
 	GENERATED_BODY()
 
+	FDelegateHandle OnFruitSpawnedHandle;
+
 	UPROPERTY(EditDefaultsOnly)
 	UBoxComponent* BoxCollision;
 
-	UPROPERTY(VisibleAnywhere Category="Movement")
+	UPROPERTY(VisibleAnywhere, Category="Movement")
 	bool HasTarget;
 
 	UPROPERTY(VisibleInstanceOnly, Category="Movement")
@@ -30,17 +32,11 @@ class TP_8IAR125_TP1_API ACatcher : public APawn
 	UPROPERTY(VisibleAnywhere)
 	UFloatingPawnMovement* Movement;
 
-	/// Computes the next fruit to target
-	static AFruit* GetNextFruit(const TArray<TWeakObjectPtr<AFruit>>& Fruits, const FVector& Position);
+	/// Called when a fruit spawns
+	void OnFruitSpawned();
 
-	/// Computes the next velocity to move
-	static FVector GetNextVelocity(
-		const FVector& Position,
-		const FVector& Target,
-		float MaxSpeed,
-		float SlowRange,
-		float StopRange
-	);
+	/// Requests a new target to follow
+	void RequestNewTarget();
 
 	/// Moves to the given position
 	void MoveTo(const FVector& TargetPosition) const;
