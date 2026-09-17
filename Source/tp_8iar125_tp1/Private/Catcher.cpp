@@ -33,7 +33,12 @@ static AFruit* GetNextFruit(
 		if (Fruit == nullptr)
 			continue;
 
-		const auto Distance = abs(Position.X - Fruit->GetActorLocation().X);
+		const auto FruitPosition = Fruit->GetActorLocation();
+
+		if (FruitPosition.X > Position.X)
+			continue;
+
+		const auto Distance = Position.X - FruitPosition.X;
 
 		if (Distance >= ClosestDistance)
 			continue;
@@ -95,8 +100,7 @@ ACatcher::ACatcher()
 	this->BoxCollision = CreateDefaultSubobject<UBoxComponent>("Collision");
 	this->BoxCollision->SetupAttachment(RootComponent);
 
-	this->HasTarget = false;
-	this->TargetLocation = FVector::ZeroVector;
+	this->CurrentTarget = nullptr;
 	this->SlowMovementRange = 1000;
 	this->StopMovementRange = 20;
 	this->Movement = CreateDefaultSubobject<UFloatingPawnMovement>("PawnMovement");
@@ -118,7 +122,7 @@ void ACatcher::OnFruitSpawned()
 		return;
 
 	// If no target and failed to find a new one, keep event
-	if (!this->HasTarget && !this->TryFindingTarget(Tracker))
+	if (this->CurrentTarget == nullptr && !this->TryFindingTarget(Tracker))
 		return;
 
 	Tracker->OnFruitRegistered.Remove(this->OnFruitSpawnedHandle);
@@ -137,21 +141,6 @@ void ACatcher::RequestNewTarget()
 	this->OnFruitSpawnedHandle = Tracker->OnFruitRegistered.AddUObject(this, &ACatcher::OnFruitSpawned);
 }
 
-void ACatcher::SetTarget(const AFruit* Target)
-{
-	if (Target == nullptr)
-	{
-		this->HasTarget = false;
-		return;
-	}
-
-	FVector Position = this->GetActorLocation();
-	Position.Y = Target->GetActorLocation().Y;
-
-	this->TargetLocation = Position;
-	this->HasTarget = true;
-}
-
 bool ACatcher::TryFindingTarget(const UFruitTrackerSystem* Tracker)
 {
 	const auto Fruit = GetNextFruit(
@@ -159,17 +148,20 @@ bool ACatcher::TryFindingTarget(const UFruitTrackerSystem* Tracker)
 		this->GetActorLocation()
 	);
 
-	this->SetTarget(Fruit);
+	this->CurrentTarget = Fruit;
 
 	return Fruit != nullptr;
 }
 
-void ACatcher::MoveTo(const FVector& TargetPosition) const
+void ACatcher::MoveTo(const AFruit* Target) const
 {
 	if (this->Movement == nullptr)
 		return;
 
 	const auto Position = this->GetActorLocation();
+	FVector TargetPosition = Position;
+	TargetPosition.Y = Target->GetActorLocation().Y;
+
 	const auto NextVelocity = GetNextVelocity(
 		Position,
 		TargetPosition,
@@ -188,10 +180,16 @@ void ACatcher::Tick(const float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (!this->HasTarget)
+	if (this->CurrentTarget == nullptr)
 		return;
 
-	this->MoveTo(this->TargetLocation);
+	if (this->CurrentTarget->GetActorLocation().X > this->GetActorLocation().X - 200)
+	{
+		this->RequestNewTarget();
+		return;
+	}
+
+	this->MoveTo(this->CurrentTarget);
 }
 
 void ACatcher::NotifyActorBeginOverlap(AActor* OtherActor)

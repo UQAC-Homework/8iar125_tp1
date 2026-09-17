@@ -18,11 +18,8 @@ class TP_8IAR125_TP1_API ACatcher : public APawn
 	UPROPERTY(EditDefaultsOnly)
 	UBoxComponent* BoxCollision;
 
-	UPROPERTY(VisibleAnywhere, Category="Movement")
-	bool HasTarget;
-
 	UPROPERTY(VisibleInstanceOnly, Category="Movement")
-	FVector TargetLocation;
+	AFruit* CurrentTarget;
 
 	UPROPERTY(EditAnywhere, Category="Movement")
 	float SlowMovementRange;
@@ -40,13 +37,13 @@ class TP_8IAR125_TP1_API ACatcher : public APawn
 	void RequestNewTarget();
 
 	/// Sets the given fruit as the current target
-	void SetTarget(const AFruit* Target);
+	//void SetTarget(const AFruit* Target);
 
 	/// Attempts to find a new target
 	bool TryFindingTarget(const UFruitTrackerSystem* Tracker);
 
 	/// Moves to the given position
-	void MoveTo(const FVector& TargetPosition) const;
+	void MoveTo(const AFruit* Target) const;
 
 protected:
 	/// Called when an attack is performed
