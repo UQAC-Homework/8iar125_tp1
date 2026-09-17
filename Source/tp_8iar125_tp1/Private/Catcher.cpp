@@ -23,7 +23,7 @@ void ACatcher::BeginPlay()
 {
 	Super::BeginPlay();
 
-	this->TargetLocation = this->PickNewTarget();
+	this->TargetLocation = this->ComputeTarget();
 }
 
 FVector ACatcher::GetNextVelocity(
@@ -66,7 +66,7 @@ FVector ACatcher::GetNextVelocity(
 	return DesiredVelocity;
 }
 
-void ACatcher::MoveToTarget(const FVector& Target) const
+void ACatcher::MoveTo(const FVector& TargetPosition) const
 {
 	if (this->Movement == nullptr)
 		return;
@@ -74,7 +74,7 @@ void ACatcher::MoveToTarget(const FVector& Target) const
 	const auto Position = this->GetActorLocation();
 	const auto NextVelocity = this->GetNextVelocity(
 		Position,
-		Target,
+		TargetPosition,
 		this->Movement->MaxSpeed,
 		this->SlowMovementRange,
 		this->StopMovementRange
@@ -86,7 +86,7 @@ void ACatcher::MoveToTarget(const FVector& Target) const
 	this->Movement->AddInputVector(NextVelocity);
 }
 
-FVector ACatcher::PickNewTarget() const
+FVector ACatcher::ComputeTarget() const
 {
 	auto Position = this->GetActorLocation();
 
@@ -99,7 +99,7 @@ void ACatcher::Tick(const float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	this->MoveToTarget(this->TargetLocation);
+	this->MoveTo(this->TargetLocation);
 }
 
 void ACatcher::NotifyActorBeginOverlap(AActor* OtherActor)
@@ -118,7 +118,7 @@ void ACatcher::NotifyActorBeginOverlap(AActor* OtherActor)
 	Fruit->Destroy();
 
 	// Pick new target
-	this->TargetLocation = this->PickNewTarget();
+	this->TargetLocation = this->ComputeTarget();
 }
 
 void ACatcher::OnAttack_Implementation() const

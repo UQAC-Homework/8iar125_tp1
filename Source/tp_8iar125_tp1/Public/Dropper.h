@@ -29,11 +29,20 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	UFloatingPawnMovement* Movement;
 
+	/// Spawns an item
 	void Spawn() const;
 
+	/// Computes the next velocity to move
 	static FVector GetNextVelocity(const FVector& Position, const FVector& Target, float MaxSpeed, float SlowRange, float StopRange);
-	bool MoveToTarget(const FVector& Target) const;
-	FVector PickNewTarget() const;
+	
+	/// Moves to the given position
+	bool MoveTo(const FVector& TargetPosition) const;
+	
+	/// Changes the current target to a random target position
+	void ChangeTarget();
+	
+	/// Computes a new random target position
+	FVector ComputeTarget(int MaxLeft, int MaxRight, int MinimumDistance) const;
 	
 public:
 	ADropper();
