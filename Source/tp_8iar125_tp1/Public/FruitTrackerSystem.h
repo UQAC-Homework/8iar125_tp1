@@ -28,4 +28,7 @@ public:
 
 	/// Gets every active fruit registered
 	const TArray<TWeakObjectPtr<AFruit>>& GetActiveFruits() const;
+	
+	/// Gets the instance of the system
+	static UFruitTrackerSystem* Get(const UObject* WorldContextObject);
 };

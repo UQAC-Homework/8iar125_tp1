@@ -4,20 +4,6 @@
 #include "ScoreSystem.h"
 #include "Kismet/KismetMathLibrary.h"
 
-/// Finds the fruit tracker system from the given instance
-static UFruitTrackerSystem* GetFruitTrackerSystem(const ACatcher* Catcher)
-{
-	if (Catcher == nullptr)
-		return nullptr;
-
-	const auto GameInstance = Catcher->GetGameInstance();
-
-	if (GameInstance == nullptr)
-		return nullptr;
-
-	return GameInstance->GetSubsystem<UFruitTrackerSystem>();
-}
-
 /// Computes the next fruit to target
 static AFruit* GetNextFruit(
 	const TArray<TWeakObjectPtr<AFruit>>& Fruits,
@@ -117,7 +103,7 @@ void ACatcher::BeginPlay()
 
 void ACatcher::OnFruitSpawned()
 {
-	const auto Tracker = GetFruitTrackerSystem(this);
+	const auto Tracker = UFruitTrackerSystem::Get(this);
 
 	if (Tracker == nullptr)
 		return;
@@ -131,7 +117,7 @@ void ACatcher::OnFruitSpawned()
 
 void ACatcher::RequestNewTarget()
 {
-	const auto Tracker = GetFruitTrackerSystem(this);
+	const auto Tracker = UFruitTrackerSystem::Get(this);
 
 	if (Tracker == nullptr)
 		return;
@@ -204,7 +190,7 @@ void ACatcher::NotifyActorBeginOverlap(AActor* OtherActor)
 		return;
 
 	this->OnAttack();
-	
+
 	GetGameInstance()->GetSubsystem<UScoreSystem>()->RecordCapture();
 
 	// Destroy fruit
