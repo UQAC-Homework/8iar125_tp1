@@ -13,6 +13,7 @@ ACatcher::ACatcher()
 	this->BoxCollision = CreateDefaultSubobject<UBoxComponent>("Collision");
 	this->BoxCollision->SetupAttachment(RootComponent);
 
+	this->HasTarget = false;
 	this->TargetLocation = FVector::ZeroVector;
 	this->SlowMovementRange = 1000;
 	this->StopMovementRange = 20;
@@ -131,9 +132,12 @@ void ACatcher::Tick(const float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	this->MoveTo(this->ComputeTarget());
+	if (!this->HasTarget)
+		return;
 
-	//this->MoveTo(this->TargetLocation);
+	//this->MoveTo(this->ComputeTarget());
+
+	this->MoveTo(this->TargetLocation);
 }
 
 void ACatcher::NotifyActorBeginOverlap(AActor* OtherActor)

@@ -14,6 +14,9 @@ class TP_8IAR125_TP1_API ACatcher : public APawn
 	UPROPERTY(EditDefaultsOnly)
 	UBoxComponent* BoxCollision;
 
+	UPROPERTY(VisibleAnywhere Category="Movement")
+	bool HasTarget;
+
 	UPROPERTY(VisibleInstanceOnly, Category="Movement")
 	FVector TargetLocation;
 
