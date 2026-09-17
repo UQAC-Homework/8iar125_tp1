@@ -189,7 +189,7 @@ void ACatcher::NotifyActorBeginOverlap(AActor* OtherActor)
 	if (Fruit == nullptr)
 		return;
 
-	this->OnAttack();
+	this->OnAttack(Fruit);
 
 	const auto ScoreSystem = UScoreSystem::Get(this);
 
@@ -203,7 +203,7 @@ void ACatcher::NotifyActorBeginOverlap(AActor* OtherActor)
 	this->RequestNewTarget();
 }
 
-void ACatcher::OnAttack_Implementation() const
+void ACatcher::OnAttack_Implementation(const AFruit* Fruit) const
 {
 	// Spawn particles
 	// Play attack animation

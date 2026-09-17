@@ -48,7 +48,7 @@ class TP_8IAR125_TP1_API ACatcher : public APawn
 protected:
 	/// Called when an attack is performed
 	UFUNCTION(BlueprintNativeEvent)
-	void OnAttack() const;
+	void OnAttack(const AFruit* Fruit) const;
 
 public:
 	ACatcher();
