@@ -18,5 +18,7 @@ class TP_8IAR125_TP1_API AFruit : public APawn
 public:
 	AFruit();
 
+	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 };

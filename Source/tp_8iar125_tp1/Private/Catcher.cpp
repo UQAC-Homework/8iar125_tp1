@@ -1,7 +1,7 @@
 #include "Catcher.h"
 
 #include "Fruit.h"
-#include "Kismet/GameplayStatics.h"
+#include "FruitTrackerSystem.h"
 #include "Kismet/KismetMathLibrary.h"
 
 ACatcher::ACatcher()
@@ -89,34 +89,28 @@ void ACatcher::MoveTo(const FVector& TargetPosition) const
 
 FVector ACatcher::ComputeTarget() const
 {
-	const auto World = this->GetWorld();
 	FVector Position = this->GetActorLocation();
+	const auto GameInstance = this->GetGameInstance();
 
-	if (World == nullptr)
+	if (GameInstance == nullptr)
 		return Position;
 
-	TArray<AActor*> InstancesFound;
-	UGameplayStatics::GetAllActorsOfClass(
-		World,
-		AFruit::StaticClass(),
-		InstancesFound
-	);
+	const auto Tracker = GameInstance->GetSubsystem<UFruitTrackerSystem>();
+
+	if (Tracker == nullptr)
+		return Position;
 
 	const AFruit* ClosestFruit = nullptr;
 	float ClosestDistance = FLT_MAX;
 
-	for (const auto Instance : InstancesFound)
+	for (const auto Instance : Tracker->GetActiveFruits())
 	{
-		const auto Fruit = Cast<AFruit>(Instance);
+		const auto Fruit = Instance.Get();
 
 		if (Fruit == nullptr)
 			continue;
 
-		const auto Distance = FVector::Dist2D(
-			Position,
-			Fruit->GetActorLocation()
-		);
-
+		const auto Distance = abs(Position.X - Fruit->GetActorLocation().X);
 
 		if (Distance >= ClosestDistance)
 			continue;
@@ -126,7 +120,7 @@ FVector ACatcher::ComputeTarget() const
 	}
 
 	if (ClosestFruit == nullptr)
-		return FVector::ZeroVector;
+		return Position;
 
 	Position.Y = ClosestFruit->GetActorLocation().Y;
 
@@ -137,7 +131,9 @@ void ACatcher::Tick(const float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	this->MoveTo(this->TargetLocation);
+	this->MoveTo(this->ComputeTarget());
+
+	//this->MoveTo(this->TargetLocation);
 }
 
 void ACatcher::NotifyActorBeginOverlap(AActor* OtherActor)

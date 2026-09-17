@@ -1,11 +1,30 @@
 #include "tp_8iar125_tp1/Public/Fruit.h"
 
+#include "FruitTrackerSystem.h"
+
 
 AFruit::AFruit()
 {
 	this->PrimaryActorTick.bCanEverTick = true;
 	this->Direction = FVector::ForwardVector;
 	this->Speed = 1.0f;
+}
+
+void AFruit::BeginPlay()
+{
+	Super::BeginPlay();
+
+	const auto GameInstance = this->GetGameInstance();
+
+	if (GameInstance == nullptr)
+		return;
+
+	const auto Tracker = GameInstance->GetSubsystem<UFruitTrackerSystem>();
+
+	if (Tracker == nullptr)
+		return;
+
+	Tracker->RegisterFruit(this);
 }
 
 void AFruit::Tick(const float DeltaTime)
@@ -18,4 +37,19 @@ void AFruit::Tick(const float DeltaTime)
 	Position += Movement;
 
 	this->SetActorLocation(Position);
+}
+
+void AFruit::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	const auto GameInstance = this->GetGameInstance();
+
+	if (GameInstance != nullptr)
+	{
+		const auto Tracker = GameInstance->GetSubsystem<UFruitTrackerSystem>();
+
+		if (Tracker != nullptr)
+			Tracker->RegisterFruit(this);
+	}
+
+	Super::EndPlay(EndPlayReason);
 }
