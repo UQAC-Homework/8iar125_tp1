@@ -1,4 +1,4 @@
-#include "tp_8iar125_tp1/Public/Fruit.h"
+#include "Fruit.h"
 
 #include "FruitTrackerSystem.h"
 #include "ScoreSystem.h"
