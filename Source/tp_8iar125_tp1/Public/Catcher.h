@@ -36,9 +36,6 @@ class TP_8IAR125_TP1_API ACatcher : public APawn
 	/// Requests a new target to follow
 	void RequestNewTarget();
 
-	/// Sets the given fruit as the current target
-	//void SetTarget(const AFruit* Target);
-
 	/// Attempts to find a new target
 	bool TryFindingTarget(const UFruitTrackerSystem* Tracker);
 
@@ -52,6 +49,7 @@ protected:
 
 public:
 	ACatcher();
+
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;

@@ -7,8 +7,12 @@
 AFruit::AFruit()
 {
 	this->PrimaryActorTick.bCanEverTick = true;
+
+	this->RootComponent = this->CreateDefaultSubobject<USceneComponent>("Root");
+
 	this->Direction = FVector::ForwardVector;
-	this->Speed = 1.0f;
+	this->Movement = CreateDefaultSubobject<UFloatingPawnMovement>("PawnMovement");
+	this->Movement->UpdatedComponent = RootComponent;
 }
 
 void AFruit::BeginPlay()
@@ -27,18 +31,17 @@ void AFruit::Tick(const float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	auto Position = this->GetActorLocation();
+	if (this->Movement == nullptr)
+		return;
 
-	const auto Movement = this->Direction * this->Speed;
-	Position += Movement;
-
-	this->SetActorLocation(Position);
+	const auto Force = this->Direction * this->Movement->MaxSpeed;
+	this->Movement->AddInputVector(Force);
 }
 
 void AFruit::LifeSpanExpired()
 {
 	Super::LifeSpanExpired();
-	
+
 	const auto ScoreSystem = UScoreSystem::Get(this);
 
 	if (ScoreSystem != nullptr)

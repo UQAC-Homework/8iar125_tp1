@@ -1,7 +1,8 @@
 #pragma once
 
+#include "GameFramework/FloatingPawnMovement.h"
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "GameFramework/Pawn.h"
 #include "Fruit.generated.h"
 
 UCLASS()
@@ -12,8 +13,8 @@ class TP_8IAR125_TP1_API AFruit : public APawn
 	UPROPERTY(EditAnywhere, Category="Movement")
 	FVector Direction;
 
-	UPROPERTY(EditAnywhere, Category="Movement")
-	float Speed;
+	UPROPERTY(VisibleAnywhere)
+	UFloatingPawnMovement* Movement;
 	
 public:
 	AFruit();
