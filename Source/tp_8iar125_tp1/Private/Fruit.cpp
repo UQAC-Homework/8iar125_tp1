@@ -15,12 +15,7 @@ void AFruit::BeginPlay()
 {
 	Super::BeginPlay();
 
-	const auto GameInstance = this->GetGameInstance();
-
-	if (GameInstance == nullptr)
-		return;
-
-	const auto Tracker = GameInstance->GetSubsystem<UFruitTrackerSystem>();
+	const auto Tracker = UFruitTrackerSystem::Get(this);
 
 	if (Tracker == nullptr)
 		return;
