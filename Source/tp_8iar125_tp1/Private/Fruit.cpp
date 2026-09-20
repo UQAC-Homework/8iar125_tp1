@@ -55,7 +55,7 @@ void AFruit::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	const auto Tracker = UFruitTrackerSystem::Get(this);
 
 	if (Tracker != nullptr)
-		Tracker->RegisterFruit(this);
+		Tracker->UnregisterFruit(this);
 
 	Super::EndPlay(EndPlayReason);
 }
