@@ -18,3 +18,6 @@ Critical Hit
 
 Minecraft Block Textures
 (https://mcasset.cloud)
+
+Unreal Engine Minecraft Logo
+(https://www.minecraftmaps.com/tools/minecraft-logo-maker)
