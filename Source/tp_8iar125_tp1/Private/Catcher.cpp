@@ -191,7 +191,7 @@ void ACatcher::NotifyActorBeginOverlap(AActor* OtherActor)
 
 	this->OnAttack(Fruit);
 
-	const auto ScoreSystem = UScoreSystem::Get(this);
+	const auto ScoreSystem = AScoreSystem::Get(this);
 
 	if (ScoreSystem != nullptr)
 		ScoreSystem->RecordCapture();

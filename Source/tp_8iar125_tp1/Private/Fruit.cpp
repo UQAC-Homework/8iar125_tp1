@@ -42,7 +42,7 @@ void AFruit::LifeSpanExpired()
 {
 	Super::LifeSpanExpired();
 
-	const auto ScoreSystem = UScoreSystem::Get(this);
+	const auto ScoreSystem = AScoreSystem::Get(this);
 
 	if (ScoreSystem != nullptr)
 		ScoreSystem->RecordMiss();

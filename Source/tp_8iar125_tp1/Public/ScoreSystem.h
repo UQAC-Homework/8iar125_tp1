@@ -1,13 +1,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameFramework/GameStateBase.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "ScoreSystem.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnScoreChanged, int32, Current, int32, Total);
 
 UCLASS()
-class TP_8IAR125_TP1_API UScoreSystem : public UGameInstanceSubsystem
+class TP_8IAR125_TP1_API AScoreSystem : public AGameStateBase
 {
 	GENERATED_BODY()
 
@@ -21,7 +22,7 @@ class TP_8IAR125_TP1_API UScoreSystem : public UGameInstanceSubsystem
 	void NotifyRecord() const;
 
 public:
-	UScoreSystem();
+	AScoreSystem();
 
 	/// Records that a miss occured
 	void RecordMiss();
@@ -30,5 +31,5 @@ public:
 	void RecordCapture();
 
 	/// Gets the instance of the system
-	static UScoreSystem* Get(const UObject* WorldContextObject);
+	static AScoreSystem* Get(const UObject* WorldContextObject);
 };
