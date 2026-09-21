@@ -4,7 +4,6 @@
 #include "Fruit.h"
 #include "FruitTrackerSystem.generated.h"
 
-// GameMode
 UCLASS()
 class TP_8IAR125_TP1_API UFruitTrackerSystem : public UGameInstanceSubsystem
 {

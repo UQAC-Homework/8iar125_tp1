@@ -1,14 +1,13 @@
 #include "ScoreSystem.h"
 
-#include "Kismet/GameplayStatics.h"
 
-AScoreSystem::AScoreSystem()
+UScoreSystem::UScoreSystem()
 {
 	this->CaughtAmount = 0;
 	this->TotalAmount = 0;
 }
 
-void AScoreSystem::NotifyRecord() const
+void UScoreSystem::NotifyRecord() const
 {
 	if (!this->OnScoreChanged.IsBound())
 		return;
@@ -19,20 +18,20 @@ void AScoreSystem::NotifyRecord() const
 	);
 }
 
-void AScoreSystem::RecordMiss()
+void UScoreSystem::RecordMiss()
 {
 	this->TotalAmount++;
 	this->NotifyRecord();
 }
 
-void AScoreSystem::RecordCapture()
+void UScoreSystem::RecordCapture()
 {
 	this->CaughtAmount++;
 	this->TotalAmount++;
 	this->NotifyRecord();
 }
 
-AScoreSystem* AScoreSystem::Get(const UObject* WorldContextObject)
+UScoreSystem* UScoreSystem::Get(const UObject* WorldContextObject)
 {
 	if (WorldContextObject == nullptr)
 		return nullptr;
@@ -42,5 +41,10 @@ AScoreSystem* AScoreSystem::Get(const UObject* WorldContextObject)
 	if (World == nullptr)
 		return nullptr;
 
-	return Cast<AScoreSystem>(UGameplayStatics::GetGameState(WorldContextObject));
+	const auto GameInstance = World->GetGameInstance();
+
+	if (GameInstance == nullptr)
+		return nullptr;
+
+	return GameInstance->GetSubsystem<UScoreSystem>();
 }
