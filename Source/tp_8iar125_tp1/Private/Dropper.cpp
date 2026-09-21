@@ -96,16 +96,15 @@ void ADropper::ChangeTarget()
 	);
 
 	this->TargetLocation = this->ComputeTarget(
+		this->GetActorLocation(),
 		MaxLeft,
 		MaxRight,
 		MinimumDistance
 	);
 }
 
-FVector ADropper::ComputeTarget(const int MaxLeft, const int MaxRight, const int MinimumDistance) const
+FVector ADropper::ComputeTarget(FVector Position, const int MaxLeft, const int MaxRight, const int MinimumDistance)
 {
-	auto Position = this->GetActorLocation();
-
 	const auto SpaceLeft = abs(MaxLeft - Position.Y);
 
 	if (SpaceLeft < MinimumDistance)

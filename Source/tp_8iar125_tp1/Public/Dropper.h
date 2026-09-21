@@ -42,7 +42,7 @@ private:
 	void ChangeTarget();
 	
 	/// Computes a new random target position
-	FVector ComputeTarget(int MaxLeft, int MaxRight, int MinimumDistance) const;
+	static FVector ComputeTarget(FVector Position, int MaxLeft, int MaxRight, int MinimumDistance);
 	
 public:
 	ADropper();
