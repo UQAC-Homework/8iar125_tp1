@@ -23,13 +23,12 @@ class TP_8IAR125_TP1_API UScoreSystem : public UGameInstanceSubsystem
 public:
 	UScoreSystem();
 
-
 	/// Records that a miss occured
 	void RecordMiss();
 
 	/// Records that a capture occured
 	void RecordCapture();
-	
+
 	/// Gets the instance of the system
 	static UScoreSystem* Get(const UObject* WorldContextObject);
 };

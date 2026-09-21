@@ -16,7 +16,7 @@ class TP_8IAR125_TP1_API ACatcher : public APawn
 	FDelegateHandle OnFruitSpawnedHandle;
 
 	UPROPERTY(EditDefaultsOnly)
-	UBoxComponent* BoxCollision;
+	TObjectPtr<UBoxComponent> BoxCollision;
 
 	UPROPERTY(VisibleInstanceOnly, Category="Movement")
 	AFruit* CurrentTarget;
@@ -28,7 +28,7 @@ class TP_8IAR125_TP1_API ACatcher : public APawn
 	float StopMovementRange;
 
 	UPROPERTY(VisibleAnywhere)
-	UFloatingPawnMovement* Movement;
+	TObjectPtr<UFloatingPawnMovement> Movement;
 
 	/// Called when a fruit spawns
 	void OnFruitSpawned();

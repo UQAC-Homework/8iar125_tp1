@@ -9,12 +9,12 @@ UCLASS()
 class TP_8IAR125_TP1_API AFruit : public APawn
 {
 	GENERATED_BODY()
-	
+
 	UPROPERTY(EditAnywhere, Category="Movement")
 	FVector Direction;
 
 	UPROPERTY(VisibleAnywhere)
-	UFloatingPawnMovement* Movement;
+	TObjectPtr<UFloatingPawnMovement> Movement;
 	
 public:
 	AFruit();

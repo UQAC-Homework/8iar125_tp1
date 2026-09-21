@@ -27,7 +27,7 @@ private:
 	float StopMovementRange;
 
 	UPROPERTY(VisibleAnywhere)
-	UFloatingPawnMovement* Movement;
+	TObjectPtr<UFloatingPawnMovement> Movement;
 
 	/// Spawns an item
 	void Spawn() const;
